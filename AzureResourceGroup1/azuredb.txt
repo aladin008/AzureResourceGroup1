@@ -1,0 +1,19 @@
+dbname: summer
+server: summerspring
+login: summer
+pw: Howmany1#
+
+key vault name
+kvsummer
+
+myResourceGroup
+
+$secretvalue = ConvertTo-SecureString "Howmany1#" -AsPlainText -Force
+
+Set-AzKeyVaultSecret -VaultName "kvsummer" -Name "SQLPassword" -SecretValue $secretvalue
+
+$secret = Get-AzKeyVaultSecret -VaultName "kvsummer" -Name "SQLPassword" -AsPlainText
+
+Write-Output $secret 
+
+New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName cloud-shell-storage-eastus -TemplateFile D:\projects\AzureResourceGroup1\AzureResourceGroup1\azuredeploy.json -TemplateParameterFile D:\projects\AzureResourceGroup1\AzureResourceGroup1\azuredeploy.parameters.json
