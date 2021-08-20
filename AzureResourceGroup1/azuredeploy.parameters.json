@@ -8,8 +8,16 @@
         "administratorLogin": {
             "value": "summer"
         },
+        //"administratorLoginPassword": {
+        //    "value": "Howmany1$"
+        //},
         "administratorLoginPassword": {
-            "value": "Howmany1$"
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/6dd54414-c682-4da8-a565-3a389a9edf45/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/kvsummer"
+                },
+                "secretName": "SQLPassword"
+            }
         }
     }
 }
