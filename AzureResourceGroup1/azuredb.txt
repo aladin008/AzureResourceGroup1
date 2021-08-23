@@ -6,7 +6,20 @@ pw: Howmany1#
 key vault name
 kvsummer
 
+Connect-AzAccount
+Select-AzureSubscription -Default Azuresubscription1
+Invoke-Sqlcmd -Query "SELECT GETDATE() AS TimeOfQuery" -ConnectionString  "Server=tcp:summerspring.database.windows.net,1433;Initial Catalog=SampleDB;Persist Security Info=False;User ID=summer;Password=Howmany1#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+
+Invoke-Sqlcmd -ConnectionString  "Server=tcp:summerspring.database.windows.net,1433;Initial Catalog=SampleDB;Persist Security Info=False;User ID=summer;Password=Howmany1#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" -InputFile "D:\ScriptFolder\TestSqlCmd.sql" | Out-File -FilePath "D:\ScriptFolder\TestSqlCmd.rpt" 
+
+az ad sp create-for-rbac -n keysql --skip-assignment
+
+Get-AzSqlInstance -Name "summer" -ResourceGroupName "cloud-shell-storage-eastus"
+
+Get-AzSqlServer -ResourceGroupName "cloud-shell-storage-eastus"
+
 myResourceGroup
+
 
 $secretvalue = ConvertTo-SecureString "Howmany1#" -AsPlainText -Force
 
